@@ -37,7 +37,7 @@ public class Client extends User implements Serializable {
         this.beneficiaries = beneficiaries;
     }
 
-    public Client(String firstname, String lastname, String email, String numtel, String adress, String password,  Set<Account> account, Agency agency) {
+    public Client(String firstname, String lastname, String email, String numtel, String adress, String password, Set<Account> account, Agency agency) {
         super(firstname, lastname, email, numtel, adress, password);
         this.account = account;
         this.agency = agency;
@@ -46,8 +46,8 @@ public class Client extends User implements Serializable {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<Image> image;
 
-
-    @OneToMany(mappedBy = "client")
+    //aniss
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     Set<Beneficiary> beneficiaries;
 
 }
