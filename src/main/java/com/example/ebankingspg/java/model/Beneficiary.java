@@ -1,5 +1,6 @@
 package com.example.ebankingspg.java.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,11 +20,11 @@ public class Beneficiary extends AbstractAuditableEntity<User, Long> implements 
 
     private String name;
 
-    @OneToOne
-    private Account account;
+    private String rib;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "client_id")
+    @JsonBackReference
     private Client client;
 
 
