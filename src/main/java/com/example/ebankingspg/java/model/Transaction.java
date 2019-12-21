@@ -18,7 +18,7 @@ import lombok.*;
 
 public class Transaction extends AbstractAuditableEntity<User, Long> implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transact_seq")
     @SequenceGenerator(name = "transact_seq", sequenceName = "transact_seq", allocationSize = 1)
     private Long id;
     private double amount;
@@ -34,8 +34,9 @@ public class Transaction extends AbstractAuditableEntity<User, Long> implements 
     private Account account;
 
 
+    //@OneToOne(fetch = FetchType.LAZY, optional = false)
     @JsonBackReference
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne
     @JoinColumn(name = "account_target_id")
     private Account accountTarget;
 

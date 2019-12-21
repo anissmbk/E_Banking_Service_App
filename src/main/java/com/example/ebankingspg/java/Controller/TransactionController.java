@@ -8,9 +8,11 @@ import javax.annotation.PostConstruct;
 import com.example.ebankingspg.java.Repository.*;
 import com.example.ebankingspg.java.request.CreateRecipientRequest;
 import com.example.ebankingspg.java.request.CreateTransactionRequest;
+import com.example.ebankingspg.java.response.AccountResponse;
 import com.example.ebankingspg.java.response.StringResponse;
 import com.example.ebankingspg.java.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.ebankingspg.java.model.*;
@@ -52,4 +54,10 @@ public class TransactionController {
         return ResponseEntity.ok(new StringResponse(str));
     }
 
+    @GetMapping(produces = "application/json")
+    @RequestMapping(value = "/badTransactions",method = RequestMethod.GET)
+    public ResponseEntity<?> getBadTransactions() throws Exception {
+        List<Transaction> transactions = transactionRepository.findByActiveIsFalse();
+        return ResponseEntity.ok(transactions);
+    }
 }

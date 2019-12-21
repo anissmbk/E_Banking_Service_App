@@ -46,9 +46,10 @@ public class Account extends AbstractAuditableEntity<User,Long> implements Seria
 
 
     //aniss remove @JsonManagedReference and replace it with @JsonIgnore
+    /*@OneToOne(mappedBy="accountTarget",fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL)*/
     @JsonManagedReference
-    @OneToOne(mappedBy="accountTarget",fetch = FetchType.LAZY,
-              cascade =  CascadeType.ALL)
+    @OneToOne(mappedBy="accountTarget")
     private Transaction transactionTarget;
 
     @ManyToOne

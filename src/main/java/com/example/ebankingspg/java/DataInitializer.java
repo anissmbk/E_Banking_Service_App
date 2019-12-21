@@ -15,7 +15,7 @@ import static com.example.ebankingspg.java.model.Admin.*;
 @Component
 public class DataInitializer implements CommandLineRunner {
 
-    private static final boolean LOAD_INITIAL_DATA = false;
+    private static final boolean LOAD_INITIAL_DATA = true;
     private static final String ROLE_ADMIN = "ROLE_ADMIN";
     private static final String ROLE_CLIENT = "ROLE_CLIENT";
     private static final String ROLE_CLIENT_MANAGER = "ROLE_CLIENT_MANAGER";
@@ -34,10 +34,12 @@ public class DataInitializer implements CommandLineRunner {
     private final GestClientService gestClientService;
     private final GestTransacService gestTransacService;
     private final RoleService roleService;
+    private final AccountService accountService;
+    private final TransactionService transactionService;
 
 
     @Autowired
-    public DataInitializer(UserService userService, AdminService adminService, ClientService clientService, GestClientService gestClientService, GestTransacService gestTransacService, RoleService roleService, TypeContractService typeContractService) {
+    public DataInitializer(UserService userService, AdminService adminService, ClientService clientService, GestClientService gestClientService, GestTransacService gestTransacService, RoleService roleService, TypeContractService typeContractService, AccountService accountService, TransactionService transactionService) {
         this.userService = userService;
         this.adminService = adminService;
         this.clientService = clientService;
@@ -45,6 +47,8 @@ public class DataInitializer implements CommandLineRunner {
         this.gestTransacService = gestTransacService;
         this.roleService = roleService;
         this.typeContractService = typeContractService;
+        this.accountService = accountService;
+        this.transactionService = transactionService;
     }
 
     @Override
@@ -120,6 +124,16 @@ public class DataInitializer implements CommandLineRunner {
                     .status("test")
                     .roles(roles2).build();
             userService.create(clientManager);
+
+
+            //anass
+            Account account1=Account.builder().client(client).accountvalidated(true).balance(10000000).rib("334545633").typecontrat(typeContrat1).build();
+            Account account2=Account.builder().client(client).accountvalidated(true).balance(70000000).rib("675768678").typecontrat(typeContrat1).build();
+            accountService.create(account1);
+            accountService.create(account2);
+
+            Transaction transaction2=Transaction.builder().account(account1).active(false).amount(2000).accountTarget(account2).build();
+            transactionService.create(transaction2);
 
             Set<Role> roles3 = new HashSet<Role>();
             roles3.add(roleService.findByRole(ROLE_TRANSACTION_MANAGER));

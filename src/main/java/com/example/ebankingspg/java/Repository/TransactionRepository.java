@@ -16,4 +16,6 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     @Query("select u from Transaction u where u.account.id = :accountId or u.accountTarget.id = :accountId")
     List<Transaction> findByAccountOrAccountTargetAndSort(@Param("accountId") Long accountId,Sort sort);
 
+    List<Transaction> findByActiveIsFalse();
+
 }
