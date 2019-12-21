@@ -50,4 +50,7 @@ public class Client extends User implements Serializable {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     Set<Beneficiary> beneficiaries;
 
+    @OneToMany(mappedBy = "client")
+    Set<Purchase> purchases;
+
 }
