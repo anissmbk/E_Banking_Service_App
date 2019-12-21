@@ -36,9 +36,17 @@ public class AccountController {
             String description;
             if(trs.getAccount().getId().equals(account1.getId())){
                 trs.setAmount(-1*trs.getAmount());
-                description="sifti lfloss lkhona "+trs.getAccountTarget().getId();
+                if(trs.getAccountTarget() == null){
+                    description="Transaction sent To "+trs.getRecipientOutOfBank();
+                }else{
+                    description="Transaction sent To "+trs.getAccountTarget().getClient().getFirstname()+" "+trs.getAccountTarget().getClient().getLastname();
+                }
             }else{
-                description="jaawk lfloss ";
+                if(trs.getAccount() == null){
+                    description="Transaction Received (*) ";
+                }else{
+                    description="Transaction Received from "+trs.getAccount().getClient().getFirstname()+" "+trs.getAccount().getClient().getLastname();
+                }
             }
             trs.setDescription(description);
         }

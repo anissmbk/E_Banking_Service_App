@@ -25,6 +25,9 @@ public class Transaction extends AbstractAuditableEntity<User, Long> implements 
     private String motif;
     private Boolean active;
 
+    //aniss
+    private String recipientOutOfBank;
+
     @ManyToOne
     @JoinColumn(name = "account_id")
     @JsonBackReference

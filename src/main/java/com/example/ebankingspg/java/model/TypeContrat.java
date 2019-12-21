@@ -36,6 +36,7 @@ public class TypeContrat extends AbstractAuditableEntity<User, Long> implements 
     private String name;
     private double Rate; //taux
 
+
    //aniss darori prblm f serialisation
     /*
     @OneToMany(mappedBy = "typecontrat", cascade = CascadeType.ALL)
