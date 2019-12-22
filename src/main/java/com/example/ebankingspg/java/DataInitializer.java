@@ -15,7 +15,7 @@ import static com.example.ebankingspg.java.model.Admin.*;
 @Component
 public class DataInitializer implements CommandLineRunner {
 
-    private static final boolean LOAD_INITIAL_DATA = true;
+    private static final boolean LOAD_INITIAL_DATA = false;
     private static final String ROLE_ADMIN = "ROLE_ADMIN";
     private static final String ROLE_CLIENT = "ROLE_CLIENT";
     private static final String ROLE_CLIENT_MANAGER = "ROLE_CLIENT_MANAGER";
